@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I’m sorry 🥺</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#8a1f55;--pink:#ff5c9a;--deep:#d63d7c;--card:#fff5f9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(circle at 20% 15%,#ffe3ee 0,transparent 40%),radial-gradient(circle at 85% 85%,#ffb3d1 0,transparent 45%),#ffc2d9;background-attachment:fixed;color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(#fff8 2px,transparent 2.5px) 0 0/34px 34px;opacity:.5;pointer-events:none}
+.card{background:var(--card);border-radius:40px;padding:30px 24px 34px;width:min(92vw,430px);box-shadow:0 0 0 8px #fff9,0 0 0 11px #ff8fba,0 20px 50px #c2447a55;position:relative;z-index:2;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.bear{font-size:92px;line-height:1;display:inline-block;animation:bob 2.2s ease-in-out infinite;position:relative}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-4deg)}}
+.tear{position:absolute;font-size:22px;left:50%;top:58%;animation:tear 1.6s ease-in infinite}
+.tear.r{margin-left:18px;animation-delay:.8s}
+@keyframes tear{0%{transform:translateY(0);opacity:1}100%{transform:translateY(40px);opacity:0}}
+.tag{font-family:'Pacifico',cursive;color:var(--deep);font-size:20px;margin:6px 0 0}
+h1{font-size:clamp(28px,8vw,38px);font-weight:800;margin:4px 0 4px;line-height:1.15}
+.sub{font-size:20px;margin:0 0 6px}
+.say{min-height:28px;margin:0 0 18px;font-size:16px;color:var(--deep);font-weight:700}
+.btns{display:flex;gap:20px;justify-content:center;align-items:center;min-height:64px}
+button{font:800 20px 'Baloo 2',system-ui,sans-serif;border:0;border-radius:999px;padding:12px 34px;cursor:pointer;color:#fff;background:linear-gradient(#ff7eb0,var(--pink));box-shadow:0 6px 0 #c2447a,0 10px 20px #ff5c9a66;transition:transform .15s,box-shadow .15s}
+button:hover{transform:translateY(-2px) scale(1.04)}
+button:active{transform:translateY(4px);box-shadow:0 2px 0 #c2447a}
+#yes{animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{50%{filter:brightness(1.08)}}
+#no{background:linear-gradient(#c9a0b6,#b07a94);box-shadow:0 6px 0 #7d516a;transition:left .25s,top .25s;z-index:5}
+.hidden{display:none}
+.fl{position:fixed;bottom:-50px;animation:up linear forwards;z-index:1;pointer-events:none;user-select:none}
+@keyframes up{to{transform:translateY(-115vh) rotate(30deg);opacity:0}}
+.spark{position:fixed;pointer-events:none;z-index:9;font-size:16px;animation:sp .8s forwards}
+@keyframes sp{to{transform:translateY(-30px) scale(.2);opacity:0}}
+.note{background:#fff;border:2px dashed #ff8fba;border-radius:20px;padding:14px 16px;margin:14px 0 20px;font-size:18px;text-align:left;line-height:1.5}
+.note b{display:block;font-family:'Pacifico',cursive;font-weight:400;color:var(--deep);margin-bottom:2px}
+@media (prefers-reduced-motion:reduce){.fl,.bear,.tear,#yes{animation:none}}
+</style></head><body>
+<div class="card" id="p1">
+<div class="bear" id="b1">🧸<span class="tear">💧</span><span class="tear r">💧</span></div>
+<div class="tag">psst… hey you</div>
+<h1>I’m very sorry 🥺</h1>
+<p class="sub">Please forgive me 🥹</p>
+<p class="say" id="say">please say yes 🌸</p>
+<div class="btns"><button id="yes">Yes 💖</button><button id="no">No</button></div>
+</div>
+<div class="card hidden" id="p2">
+<div class="bear">🥰</div>
+<h1>I knew it! 😌</h1>
+<div class="note"><b>Dear you,</b>I knew you can’t be without me now 🫶 So just unblock me and talk to me like before, okay? I’ll be good. Promise 🤞💗</div>
+<button id="go">Unblock me 🔓💌</button>
+<p class="say" id="end" style="margin-top:16px"></p>
+</div>
+<script>
+const $=i=>document.getElementById(i),no=$('no'),yes=$('yes'),say=$('say');
+const msgs=['nope 😝','too slow 🏃‍♀️','you can’t catch me 🙈','aww, try again 🥺','that button is shy 🫣','just press yes 💖','pretty please 🥹','I’ll buy you chocolate 🍫','okay okay, YES is right there 👉','stop, it’s scared 😭'];
+let n=0,sz=1;
+const dodge=e=>{e.preventDefault();no.style.position='fixed';const m=10,w=no.offsetWidth,h=no.offsetHeight;no.style.left=m+Math.random()*(innerWidth-w-2*m)+'px';no.style.top=m+Math.random()*(innerHeight-h-2*m)+'px';say.textContent=msgs[n++%msgs.length];sz=Math.min(sz+.12,2);yes.style.transform=`scale(${sz})`;yes.style.margin=`0 ${(sz-1)*30}px`;$('b1').firstChild.textContent=n>4?'😭':'🥺'};
+['mouseenter','touchstart','pointerdown','click','focus'].forEach(ev=>no.addEventListener(ev,dodge,{passive:false}));
+const fl=(c,t)=>{const s=document.createElement('span');s.className='fl';s.textContent=c;s.style.left=Math.random()*100+'vw';s.style.fontSize=16+Math.random()*26+'px';s.style.animationDuration=4+Math.random()*4+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),8500)};
+const hearts=['💖','💗','💕','🌸','✨','🎀','🍓'];
+const burst=k=>{for(let i=0;i<k;i++)setTimeout(()=>fl(hearts[i%7]),i*60)};
+burst(14);setInterval(()=>fl(hearts[Math.random()*7|0]),600);
+let lt=0;addEventListener('pointermove',e=>{if(Date.now()-lt<60)return;lt=Date.now();const s=document.createElement('span');s.className='spark';s.textContent='✨';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),800)});
+yes.onclick=()=>{$('p1').classList.add('hidden');$('p2').classList.remove('hidden');burst(50)};
+$('go').onclick=()=>{$('end').textContent='Yayyy! I missed you so much 🥹💞';burst(60)};
+</script></body></html>
